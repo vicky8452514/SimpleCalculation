@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- 螢幕解析度 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 使IE更新至最新 -->
+    <link rel="Shortcut Icon" type="image/x-icon" href="images/ico/Double-J-Design-Origami-Colored-Pencil-Red-star.ico">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>傳統表單的製作</title>
+    
+    <style>
+      body
+      {
+        color: DarkBlue;
+        background: url(images/Are.png); 
+      }
+
+      input
+      {
+        color: Violet;
+        font-size: 15px;
+      }
+
+      button
+      {
+        background: DarkSlateBlue;
+        color: Violet;
+        height: 36px;
+        font-size: 15px;
+      }
+      
+      #message_box02
+      {
+        font-size: 30px;
+      }
+    </style>  
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <form>
+         <div class="row"> 
+          <div class="col-lg-4 col-md-6">
+            <div class="input-group">
+              <span class="input-group-text" id="label01">半徑：</span>
+              <input type="text" class="form-control" placeholder="請輸入阿拉伯數字" aria-label="radius_text" aria-describedly="radius_text" name="radius_text" id="radius_text" autofocus>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="input-group">
+              <span class="input-group-text" id="label02">高度：</span>
+              <input type="text" class="form-control" placeholder="請輸入阿拉伯數字" aria-label="height_text" aria-describedly="height_text" name="height_text" id="height_text">
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="d-grid">
+              <button type="button" name="calculate_button" id="calculate_button">計算</button>
+            </div>          
+          </div>  
+      </form>
+    </div>
+    <p></p>
+    <marquee id="message_box01"></marquee>
+    <!-- <marquee id="message_box01" onMouseOver="this.stop();" onMouseOut="this.start();"></marquee> -->
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+      $("#label01, #label02").effect('slide', {direction: 'up', distance: 30}, 1000);
+      $("#radius_text, #height_text").effect('slide', {direction: 'down', distance: 30}, 1000);
+      $("#calculate_button").effect('bounce', {distance: 30, times: 5}, 1000);
+
+      calculate_button.addEventListener('click', calculate);
+      message_box01.addEventListener('mouseover', message_box01.stop);
+      message_box01.addEventListener('mouseout', message_box01.start);
+
+
+      function calculate(event)
+      {
+        var radius, height;
+        var cylinder_surface_area, cylinder_volume;
+
+        radius = Number(radius_text.value);
+        height = Number(height_text.value);
+
+        if (event.target.id = "calculate_button")
+        {
+          cylinder_surface_area = radius ** 2 * Math.PI * 2 + 2 * radius * Math.PI * height;
+          cylinder_volume = radius **2 * Math.PI * height;
+          //toFixed(小數取至幾位) console.log(cylinder_surface_area.toFixed(3), cylinder_volume.toFixed(3))
+          message_box01.innerHTML = `半徑為${radius}，高度為${height}之圓柱體，其<br>表面積＝${cylinder_surface_area.toFixed(2)}，<br>體積＝${cylinder_volume.toFixed(2)} 。`;
+        }
+      }
+    </script>
+  </body>
+</html>
